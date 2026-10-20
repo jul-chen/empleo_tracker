@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+
 @Service
 public class AdzunaClient {
     private final RestClient restClient;
@@ -21,9 +22,11 @@ public class AdzunaClient {
 
     public AdzunaResponse buscarOfertas(){
         return restClient.get().uri(uriBuilder -> uriBuilder.path("/search/1")
-                .queryParam("app_id",applicationId)
-                .queryParam("app_key",applicationKey)
-                .queryParam("what","java junior")
+
+                        .queryParam("app_id",applicationId)
+                        .queryParam("app_key",applicationKey)
+                        .queryParam("what","beca practica")
+                        .queryParam("where","Madrid")
                         .build())
                 .retrieve()
                 .body(AdzunaResponse.class);
