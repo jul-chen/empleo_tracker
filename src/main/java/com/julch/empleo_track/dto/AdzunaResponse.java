@@ -2,6 +2,7 @@ package com.julch.empleo_track.dto;
 
 import java.util.List;
 
+
 public record AdzunaResponse(List<JobOfferData> results ) {
     public record JobOfferData(
             String id,
