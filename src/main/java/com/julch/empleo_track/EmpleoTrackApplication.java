@@ -11,18 +11,24 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class EmpleoTrackApplication {
+public class EmpleoTrackApplication implements CommandLineRunner {
 
+    private final AdzunaClient adzunaClient;
+    private final JobProcessorService jobProcessorService;
+
+    public EmpleoTrackApplication(AdzunaClient adzunaClient, JobProcessorService jobProcessorService) {
+        this.adzunaClient = adzunaClient;
+        this.jobProcessorService = jobProcessorService;
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmpleoTrackApplication.class, args);
 	}
 
-    @Bean
-    CommandLineRunner init(JobProcessorService jobProcessorService) {
-        return args ->  {
-            System.out.println("Iniciando empleo track");
-            jobProcessorService.iniciarBusquedaOferta();
-        };
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Iniciando empleo track");
+        adzunaClient.buscarOfertas();
+        jobProcessorService.iniciarBusquedaOferta();
     }
 }
