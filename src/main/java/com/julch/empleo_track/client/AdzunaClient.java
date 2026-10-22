@@ -9,6 +9,8 @@ import org.springframework.web.client.RestClient;
 @Service
 public class AdzunaClient {
     private final RestClient restClient;
+    public static final String perfil = "informatica tic software junior";
+    public static final String tipoEmpleo = "beca practica";
 
     @Value("${application.id}")
     private String applicationId;
@@ -20,12 +22,12 @@ public class AdzunaClient {
         this.restClient = RestClient.builder().baseUrl("https://api.adzuna.com/v1/api/jobs/es").build();
     }
 
-    public AdzunaResponse buscarOfertas(){
+    public AdzunaResponse buscarOfertas() {
         return restClient.get().uri(uriBuilder -> uriBuilder.path("/search/1")
-
                         .queryParam("app_id",applicationId)
                         .queryParam("app_key",applicationKey)
-                        .queryParam("what","beca practica")
+                        .queryParam("what",tipoEmpleo)
+                        .queryParam("what_or",perfil)
                         .queryParam("where","Madrid")
                         .build())
                 .retrieve()
