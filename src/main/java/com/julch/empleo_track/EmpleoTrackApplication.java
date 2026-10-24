@@ -1,11 +1,9 @@
 package com.julch.empleo_track;
 import com.julch.empleo_track.client.AdzunaClient;
-import com.julch.empleo_track.dto.AdzunaResponse;
 import com.julch.empleo_track.service.JobProcessorService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 

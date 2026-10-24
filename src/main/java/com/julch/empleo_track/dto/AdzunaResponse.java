@@ -5,10 +5,8 @@ import jakarta.persistence.Id;
 
 import java.util.List;
 
-@Entity
 public record AdzunaResponse(List<JobOfferData> results ) {
     public record JobOfferData(
-            @Id
             String id,
             String title,
             String description,
