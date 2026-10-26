@@ -1,8 +1,4 @@
 package com.julch.empleo_track.dto;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-
 import java.util.List;
 
 public record AdzunaResponse(List<JobOfferData> results ) {

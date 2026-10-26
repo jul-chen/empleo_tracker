@@ -1,6 +1,4 @@
 package com.julch.empleo_track.dto;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,9 +9,12 @@ import jakarta.persistence.Table;
 public class JobOfferEntity {
     @Id
     private String id;
+
     private String title;
+
     @Column(length = 1500)
     private String redirect_url;
+
     private String company;
 
     public JobOfferEntity(String id, String title, String redirect_url, String company) {
@@ -23,8 +24,7 @@ public class JobOfferEntity {
         this.company = company;
     }
 
-    public JobOfferEntity() {
-    }
+    public JobOfferEntity() {}
 
     public String getId() { return id;}
 

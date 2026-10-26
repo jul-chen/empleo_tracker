@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class JobProcessorService {
+
     private AdzunaClient adzunaClient;
     private JobOfferRepository jobOfferRepository;
 
@@ -24,18 +25,14 @@ public class JobProcessorService {
         System.out.println("Iniciando busqueda oferta de adzuna");
         AdzunaResponse resultado = adzunaClient.buscarOfertas();
 
-        for(int i = 0 ; i<resultado.results().size() ; i++){
-            if(!jobOfferRepository.existsById(resultado.results().get(i).id())){
-                JobOfferEntity jobOfferEntity = new JobOfferEntity();
-                System.out.println("Nueva oferta encontrada: " + resultado.results().get(i).title());
-                jobOfferEntity.setId(resultado.results().get(i).id());
-                jobOfferEntity.setTitle(resultado.results().get(i).title());
-                jobOfferEntity.setRedirect_url(resultado.results().get(i).redirect_url());
-                jobOfferEntity.setCompany(resultado.results().get(i).company().company_name());
+        for(AdzunaResponse.JobOfferData jobOfferData : resultado.results()){
+            if(!jobOfferRepository.existsById(jobOfferData.id())){
+                System.out.println("Nueva oferta encontrada: " + jobOfferData.title());
+                JobOfferEntity jobOfferEntity = new JobOfferEntity(jobOfferData.id(),jobOfferData.title(),
+                        jobOfferData.redirect_url(),jobOfferData.company().company_name());
                 jobOfferRepository.save(jobOfferEntity);
-
             }else{
-                System.out.println("Oferta ya existente");
+                System.out.println("Oferta ya guardada: " + jobOfferData.id());
             }
         }
 

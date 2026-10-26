@@ -1,5 +1,4 @@
 package com.julch.empleo_track.client;
-
 import com.julch.empleo_track.dto.AdzunaResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,4 @@ public class AdzunaClient {
                 .retrieve()
                 .body(AdzunaResponse.class);
     }
-
-
 }
