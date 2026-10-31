@@ -1,6 +1,7 @@
 package com.julch.empleo_track.service;
 
 import com.julch.empleo_track.client.AdzunaClient;
+import com.julch.empleo_track.client.TelegramClient;
 import com.julch.empleo_track.dto.AdzunaResponse;
 import com.julch.empleo_track.dto.JobOfferEntity;
 import com.julch.empleo_track.repository.JobOfferRepository;
@@ -14,10 +15,13 @@ public class JobProcessorService {
 
     private AdzunaClient adzunaClient;
     private JobOfferRepository jobOfferRepository;
+    private TelegramClient telegramClient;
 
-    public JobProcessorService(AdzunaClient adzunaClient, JobOfferRepository jobOfferRepository) {
+
+    public JobProcessorService(AdzunaClient adzunaClient, JobOfferRepository jobOfferRepository, TelegramClient telegramClient) {
         this.adzunaClient = adzunaClient;
         this.jobOfferRepository = jobOfferRepository;
+        this.telegramClient = telegramClient;
     }
 
     public void iniciarBusquedaOferta(){
