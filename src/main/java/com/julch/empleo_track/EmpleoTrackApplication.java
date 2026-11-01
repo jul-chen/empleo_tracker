@@ -26,7 +26,6 @@ public class EmpleoTrackApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println("Iniciando empleo track");
-        adzunaClient.buscarOfertas();
         jobProcessorService.iniciarBusquedaOferta();
     }
 }

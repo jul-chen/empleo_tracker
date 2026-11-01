@@ -35,6 +35,11 @@ public class JobProcessorService {
                 JobOfferEntity jobOfferEntity = new JobOfferEntity(jobOfferData.id(),jobOfferData.title(),
                         jobOfferData.redirect_url(),jobOfferData.company().company_name());
                 jobOfferRepository.save(jobOfferEntity);
+                String textoMensaje = " <b>NUEVA OFERTA DE EMPLEO</b>\n\n" +
+                        "<b>Puesto:</b> " + jobOfferData.title() + "\n" +
+                        "<b>Empresa:</b> " + jobOfferData.company().company_name() + "\n\n" +
+                        "<a href=\"" + jobOfferData.redirect_url() + "\"> Ver Oferta Aquí</a>";
+                telegramClient.enviarMensaje(textoMensaje);
             }else{
                 System.out.println("Oferta ya guardada: " + jobOfferData.id());
             }

@@ -1,6 +1,7 @@
 package com.julch.empleo_track.client;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -12,9 +13,9 @@ public class TelegramClient {
 
     private final RestClient restClient;
 
-    @Value("$telegram.bot-token")
+    @Value("${telegram.bot-token}")
     private String botToken;
-    @Value("$telegram.chat-id")
+    @Value("${telegram.chat-id}")
     private String chatId;
 
     public TelegramClient(){
@@ -22,11 +23,14 @@ public class TelegramClient {
     }
 
     public void enviarMensaje(String mensaje){
-        Map<String,String> map = new HashMap<>();
-        map.put("chat_id",chatId);
-        map.put("text",mensaje);
-
+        Map<String, String> map = Map.of(
+                "chat_id", chatId,
+                "text", mensaje,
+                "parse_mode", "HTML"
+        );
+        System.out.println("DEBUG TELEGRAM URL: https://api.telegram.org/bot" + botToken + "/sendMessage");
         restClient.post().uri("/bot{token}/mensaje}",botToken)
+                .contentType(MediaType.APPLICATION_JSON)
                 .body(map)
                 .retrieve()
                 .toBodilessEntity();
