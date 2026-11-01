@@ -28,8 +28,8 @@ public class TelegramClient {
                 "text", mensaje,
                 "parse_mode", "HTML"
         );
-        System.out.println("DEBUG TELEGRAM URL: https://api.telegram.org/bot" + botToken + "/sendMessage");
-        restClient.post().uri("/bot{token}/mensaje}",botToken)
+        String urlTelegram = "/bot" + botToken + "/sendMessage";
+        restClient.post().uri(urlTelegram)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(map)
                 .retrieve()
