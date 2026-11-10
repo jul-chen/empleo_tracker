@@ -21,5 +21,6 @@ Para probarlo en local, únicamente se necesita configurar el archivo de applica
 - adzuna.app-key=TU_APP_KEY
 - telegram.bot-token=TU_TOKEN_DE_TELEGRAM
 - telegram.chat-id=TU_CHAT_ID
+
 Y por último levantar la base de datos con docker abriendo la terminal y dirigiendote al archivo del proyecto:
 docker-compose up -d
